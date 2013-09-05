@@ -3,11 +3,11 @@ require File.join(File.dirname(__FILE__), "/../spec_helper")
 describe "EvernoteOAuth::Client" do
   before :each do
     @client = EvernoteOAuth::Client.new(
-      consumer_key: 'consumer_key',
-      consumer_secret: 'consumer_secret',
-      sandbox: false,
-      token: 'token',
-      secret: 'secret'
+      :consumer_key => 'consumer_key',
+      :consumer_secret => 'consumer_secret',
+      :sandbox => false,
+      :token => 'token',
+      :secret => 'secret'
     )
   end
   context "#initialize" do

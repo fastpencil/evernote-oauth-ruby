@@ -33,10 +33,10 @@ module EvernoteOAuth
       shared_notebook = business_notebook.sharedNotebooks.first
       business_user = business_note_store.user
       linked_notebook = Evernote::EDAM::Type::LinkedNotebook.new(
-        shareKey: shared_notebook.shareKey,
-        shareName: business_notebook.name,
-        username: business_user.username,
-        shardId: business_user.shardId
+        :shareKey => shared_notebook.shareKey,
+        :shareName => business_notebook.name,
+        :username => business_user.username,
+        :shardId => business_user.shardId
       )
       note_store.createLinkedNotebook(linked_notebook)
     end

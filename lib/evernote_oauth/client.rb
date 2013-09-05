@@ -48,9 +48,9 @@ module EvernoteOAuth
       @consumer ||= OAuth::Consumer.new(
         @consumer_key,
         @consumer_secret,
-        {site: endpoint,
-          request_token_path: "/oauth",
-          access_token_path: "/oauth"}
+        {:site => endpoint,
+          :request_token_path => "/oauth",
+          :access_token_path => "/oauth"}
       )
     end
 

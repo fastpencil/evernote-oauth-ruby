@@ -14,10 +14,10 @@ module Evernote
         # @return [Evernote::EDAM::Type::Note]
         def note(options={})
           options = {
-            with_content: false,
-            with_resources_data: false,
-            with_resources_recognition: false,
-            with_resources_alternate_data: false
+            :with_content => false,
+            :with_resources_data => false,
+            :with_resources_recognition => false,
+            :with_resources_alternate_data => false
           }.merge(options)
 
           @note_by_opions[options] ||

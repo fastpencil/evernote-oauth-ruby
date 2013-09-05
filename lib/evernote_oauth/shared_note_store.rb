@@ -8,9 +8,9 @@ module EvernoteOAuth
     # @return [EvernoteOAuth::SharedNoteStore::Store]
     def shared_note_store(linked_notebook, options={})
       EvernoteOAuth::SharedNoteStore::Store.new(
-        linked_notebook: linked_notebook,
-        token: options[:token] || @token,
-        client: thrift_client(::Evernote::EDAM::NoteStore::NoteStore::Client,
+        :linked_notebook => linked_notebook,
+        :token => options[:token] || @token,
+        :client => thrift_client(::Evernote::EDAM::NoteStore::NoteStore::Client,
                               linked_notebook.noteStoreUrl)
       )
     end

@@ -7,7 +7,7 @@ describe "EvernoteOAuth::BusinessUtils" do
     it "calls createNote with shared_note_store" do
       note = Evernote::EDAM::Type::Note.new
       business_notebook = Evernote::EDAM::Type::LinkedNotebook.new
-      shared_notebook = Evernote::EDAM::Type::SharedNotebook.new(notebookGuid: 'notebook_guid')
+      shared_notebook = Evernote::EDAM::Type::SharedNotebook.new(:notebookGuid => 'notebook_guid')
       shared_note_store = mock(Object)
       shared_note_store.stub(:getSharedNotebookByAuth).and_return(shared_notebook)
       shared_note_store.stub(:createNote).and_return(note)
@@ -18,9 +18,9 @@ describe "EvernoteOAuth::BusinessUtils" do
 
   context "#list_business_notebooks" do
     it "calls listLinkedNotebooks with note_store" do
-      ln1 = Evernote::EDAM::Type::LinkedNotebook.new(businessId: 'Evernote')
+      ln1 = Evernote::EDAM::Type::LinkedNotebook.new(:businessId => 'Evernote')
       ln2 = Evernote::EDAM::Type::LinkedNotebook.new
-      ln3 = Evernote::EDAM::Type::LinkedNotebook.new(businessId: 'Evernote')
+      ln3 = Evernote::EDAM::Type::LinkedNotebook.new(:businessId => 'Evernote')
       note_store = mock(Object)
       note_store.stub(:listLinkedNotebooks).and_return([ln1, ln2, ln3])
       should_receive(:note_store).and_return(note_store)
@@ -32,19 +32,19 @@ describe "EvernoteOAuth::BusinessUtils" do
     it "calls createNote with shared_note_store" do
       notebook = Evernote::EDAM::Type::Notebook.new
       shared_notebook = Evernote::EDAM::Type::SharedNotebook.new(
-        shareKey: 'shareKey'
+        :shareKey => 'shareKey'
       )
       business_notebook = Evernote::EDAM::Type::Notebook.new(
-        name: 'name',
-        sharedNotebooks: [shared_notebook]
+        :name => 'name',
+        :sharedNotebooks => [shared_notebook]
       )
       business_note_store = mock(Object)
       business_note_store.stub(:createNotebook).with(notebook).and_return(business_notebook)
       should_receive(:business_note_store).and_return(business_note_store)
 
       business_user = Evernote::EDAM::Type::User.new(
-        username: 'username',
-        shardId: 'shardId'
+        :username => 'username',
+        :shardId => 'shardId'
       )
       user_store = mock(Object)
       user_store.stub(:getUser).and_return(business_user)
@@ -53,10 +53,10 @@ describe "EvernoteOAuth::BusinessUtils" do
       note_store = mock(Object)
       note_store.should_receive(:createLinkedNotebook).with(
         Evernote::EDAM::Type::LinkedNotebook.new(
-          shareKey: 'shareKey',
-          shareName: 'name',
-          username: 'username',
-          shardId: 'shardId'
+          :shareKey => 'shareKey',
+          :shareName => 'name',
+          :username => 'username',
+          :shardId => 'shardId'
         )
       )
       should_receive(:note_store).and_return(note_store)
@@ -68,7 +68,7 @@ describe "EvernoteOAuth::BusinessUtils" do
   context "#get_corresponding_notebook" do
     it "calls getNotebookWithGuid with business_note_store" do
       business_notebook = Evernote::EDAM::Type::LinkedNotebook.new
-      shared_notebook = Evernote::EDAM::Type::SharedNotebook.new(notebookGuid: 'notebook_guid')
+      shared_notebook = Evernote::EDAM::Type::SharedNotebook.new(:notebookGuid => 'notebook_guid')
       shared_note_store = mock(Object)
       shared_note_store.stub(:getSharedNotebookByAuth).and_return(shared_notebook)
       should_receive(:shared_note_store).with(business_notebook).and_return(shared_note_store)

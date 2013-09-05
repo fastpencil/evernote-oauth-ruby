@@ -9,10 +9,10 @@ module EvernoteOAuth
     def business_note_store(options={})
       auth = user_store.authenticateToBusiness(options[:token] || @token)
       EvernoteOAuth::BusinessNoteStore::Store.new(
-        token: auth.authenticationToken,
-        client: thrift_client(::Evernote::EDAM::NoteStore::NoteStore::Client,
+        :token => auth.authenticationToken,
+        :client => thrift_client(::Evernote::EDAM::NoteStore::NoteStore::Client,
                               auth.noteStoreUrl),
-        user: auth.user
+        :user => auth.user
       )
     end
 
