@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
-    s.specification_version = 3
+    s.specification_version = 4
 
     s.add_dependency 'oauth', '>= 0.4.1'
     s.add_dependency 'evernote-thrift'
