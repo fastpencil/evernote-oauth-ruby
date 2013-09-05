@@ -4,7 +4,7 @@ module EvernoteOAuth
     def method_missing(name, *args, &block)
       method = @client.class.instance_method(name)
       if method.arity != args.size
-        new_args = args.dup.insert(idx_token, @token)
+        new_args = args.dup.unshift(@token)
         begin
           result = @client.send(name, *new_args, &block)
         rescue ArgumentError => e
